@@ -5,9 +5,8 @@ for the slot convention. Drop a correctly-named file here and it's picked up.
 
 | Slot | Status | File |
 |---|---|---|
-| Primary symbol | ✅ | `symbol.png` (dogwood emblem) |
-| Emblem / crest | ✅ | `emblem.svg` (dogwood botanical crest) |
-| Emblem — seal | ✅ | `emblem-seal.jpg` (judo seal, on blue) |
+| Primary symbol | ⬜ | drop `symbol.svg` (dogwood source in `_raw/`) |
+| Emblem / crest | ⬜ | drop `emblem.svg` (dogwood crest + blue seal sources in `_raw/`) |
 | Horizontal lockup | ⬜ | drop `lockup-horizontal.svg` |
 | Stacked lockup | ⬜ | drop `lockup-stacked.svg` |
 | Wordmark | ⬜ | drop `wordmark.svg` |
@@ -16,4 +15,5 @@ for the slot convention. Drop a correctly-named file here and it's picked up.
 | Colour variants | ⬜ | `-mono` / `-reversed` / `-transparent` |
 
 Colours: Near-white `#FBFBFA` · Deep ink `#17181C` · Electric blue `#2F6BFF` · Mist `#E7E9EE`.
-`_raw/` holds the opaque-background exports.
+Built marks were cleared — this direction is intentionally light until a direction is chosen.
+`_raw/` holds the dogwood + blue-seal source exports.
