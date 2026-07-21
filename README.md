@@ -36,11 +36,18 @@ GitHub Pages rebuilds in about a minute. `index.html` is self-contained apart fr
 
 ```
 index.html         the lookbook
-old-north/         Old North assets (with transparent versions)
-newsprint/         Newsprint assets (with transparent versions)
-high-key-sport/    High-Key Sport assets (with transparent versions)
-caja-logos/        shared seal and hanko marks
+ASSETS.md          the drag-and-drop asset convention (slot names per direction)
+old-north/         Old North assets — consistent slot filenames + README manifest
+newsprint/         Newsprint assets — same slot convention + README
+high-key-sport/    High-Key Sport assets — same slot convention + README
+favicon.svg …      site icons at root (favicon + apple-touch)
 ```
+
+Each direction folder uses the **same slot filenames** so adding an asset is drag-and-drop
+— see [`ASSETS.md`](ASSETS.md) and each folder's `README.md`.
+
+**Build tracking:** [`checklist.html`](checklist.html) — the per-direction asset checklist
+(what's done / partial / open). Open it in a browser and tick items as you build them.
 
 ## To do
 

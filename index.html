@@ -4,6 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>CAJA — Interactive Lookbook</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Archivo:wght@400;600;700;900&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Graduate&family=Hanken+Grotesk:wght@400;500;700;800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Kanit:wght@800;900&family=Libre+Franklin:wght@400;600;700;900&family=Oswald:wght@400;500;600;700&family=Pinyon+Script&family=Poppins:wght@400;500;600;700;800&family=Shippori+Mincho:wght@700;800&family=Space+Grotesk:wght@400;500;700&family=UnifrakturMaguntia&family=Zilla+Slab:wght@500;700&display=swap" rel="stylesheet">
@@ -261,6 +265,50 @@
   .hero-preview .hp-ctas{display:flex;gap:12px;flex-wrap:wrap;}
   .hero-preview .hp-cta,.hero-preview .hp-cta2{display:inline-block;padding:13px 24px;font-size:14px;font-weight:600;cursor:default;}
   @media(max-width:600px){.hero-preview .hp-links{display:none;}.hero-preview .hp-body{padding:34px 24px 44px;}}
+
+  /* usage-rules layer */
+  .usage{margin:36px 0 6px;}
+  .usage-block{margin-bottom:26px;}
+  .usage-h{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(20px,2.6vw,26px);margin:0 0 3px;}
+  .usage-sub{color:var(--soft);font-size:13.5px;margin:0 0 14px;max-width:72ch;}
+  .u-lab{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
+  .u-marks{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;}
+  @media(max-width:760px){.u-marks{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:480px){.u-marks{grid-template-columns:1fr;}}
+  .u-tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:9px;}
+  .u-canvas{background:#F7F2E7;border-radius:8px;min-height:118px;display:flex;align-items:center;justify-content:center;padding:18px;}
+  .u-canvas.plain{background:#e9e7e1;}
+  .u-canvas img{max-width:100%;max-height:88px;display:block;}
+  .u-name{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--ink);}
+  .u-note{font-size:11.5px;color:var(--soft);line-height:1.4;}
+  .u-two{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;}
+  @media(max-width:760px){.u-two{grid-template-columns:1fr;}}
+  .u-panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .clearspace{display:flex;align-items:center;justify-content:center;background:#F7F2E7;border-radius:8px;padding:24px;}
+  .clearspace .cs-box{border:1.5px dashed rgba(193,39,45,.5);border-radius:6px;padding:26px;}
+  .clearspace img{display:block;max-width:100%;max-height:80px;}
+  .minsizes{display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap;padding:8px 2px 0;}
+  .minsizes figure{margin:0;text-align:center;}
+  .minsizes img{display:block;margin:0 auto 6px;}
+  .minsizes figcaption{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.5px;color:var(--soft);text-transform:uppercase;}
+  table.cspec{width:100%;border-collapse:collapse;font-size:12.5px;}
+  table.cspec th,table.cspec td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle;}
+  table.cspec th{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--soft);font-weight:500;}
+  table.cspec .sw{width:20px;height:20px;border-radius:5px;border:1px solid rgba(0,0,0,.12);display:inline-block;vertical-align:middle;margin-right:8px;}
+  table.cspec .cname{font-weight:600;white-space:nowrap;}
+  table.cspec .mono{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--soft);}
+  @media(max-width:680px){table.cspec th:nth-child(4),table.cspec td:nth-child(4),table.cspec th:nth-child(5),table.cspec td:nth-child(5){display:none;}}
+  .dodont{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:620px){.dodont{grid-template-columns:1fr;}}
+  .dd-col{border:1px solid var(--line);border-radius:12px;padding:15px 17px;background:var(--panel);}
+  .dd-col h5{margin:0 0 10px;font-size:13px;display:flex;align-items:center;gap:8px;}
+  .dd-col.do h5{color:#2e7d46;}
+  .dd-col.dont h5{color:#c1272d;}
+  .dd-col ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .dd-col li{font-size:12.5px;color:var(--soft);line-height:1.4;padding-left:20px;position:relative;}
+  .dd-col li::before{position:absolute;left:0;top:0;font-weight:700;}
+  .dd-col.do li::before{content:"✓";color:#2e7d46;}
+  .dd-col.dont li::before{content:"✕";color:#c1272d;}
 </style>
 
 
@@ -423,6 +471,73 @@
         <div style="margin-top:14px;"><span style="background:#17233F;color:#fff;padding:10px 18px;font-family:'Libre Franklin',sans-serif;font-weight:600;font-size:12px;">Try a free class</span></div>
       </div><div class="vimg" style="background:linear-gradient(135deg,#20335A,#14203a);color:rgba(255,255,255,.6);"><svg width="210" height="210" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:.13;"><use href="#mk-star-rev"/></svg><span class="lab">Photo — portrait / lineage</span></div></div>
     </div>
+    <div class="usage">
+      <div class="usage-block">
+        <div class="u-lab">System &amp; usage · Old North</div>
+        <div class="usage-h">The mark family</div>
+        <div class="usage-sub">The full signature and its reductions. Each also exists in the three colour variants (full-colour, one-colour, reversed) shown in the inversion tiles above.</div>
+        <div class="u-marks">
+          <div class="u-tile"><div class="u-canvas"><img src="old-north/lockup-horizontal.svg" alt="Horizontal lockup"></div><div class="u-name">Horizontal lockup</div><div class="u-note">Web headers, email signatures.</div></div>
+          <div class="u-tile"><div class="u-canvas"><img src="old-north/lockup-stacked.svg" alt="Stacked lockup" style="max-height:118px;"></div><div class="u-name">Stacked lockup</div><div class="u-note">Posters, square spaces, the dojo wall.</div></div>
+          <div class="u-tile"><div class="u-canvas"><img src="old-north/wordmark.png" alt="Wordmark"></div><div class="u-name">Wordmark</div><div class="u-note">The name alone, in brand type.</div></div>
+          <div class="u-tile"><div class="u-canvas"><img src="old-north/monogram.svg" alt="C monogram" style="max-height:94px;"></div><div class="u-name">Monogram — block &ldquo;C&rdquo;</div><div class="u-note">Lettered submark: embroidery, merch.</div></div>
+          <div class="u-tile"><div class="u-canvas plain"><img src="old-north/symbol-roundel.svg" alt="Star roundel" style="max-height:100px;"></div><div class="u-name">Star roundel</div><div class="u-note">Icon submark: avatar, social.</div></div>
+          <div class="u-tile"><div class="u-canvas plain"><img src="old-north/appicon.svg" alt="App icon" style="max-height:94px;border-radius:14px;"></div><div class="u-name">App icon / favicon</div><div class="u-note">Web tab &amp; home-screen tile.</div></div>
+        </div>
+      </div>
+
+      <div class="usage-block u-two">
+        <div class="u-panel">
+          <div class="u-lab">Clear space</div>
+          <div class="clearspace"><div class="cs-box"><img src="old-north/lockup-horizontal.svg" alt="Clear space diagram"></div></div>
+          <div class="u-note" style="margin-top:10px;">Keep clear space of <b style="color:var(--ink);">one star-height</b> on every side of any lockup. Nothing &mdash; type, a photo edge, or another mark &mdash; enters that box.</div>
+        </div>
+        <div class="u-panel">
+          <div class="u-lab">Minimum size</div>
+          <div class="minsizes">
+            <figure><img src="old-north/lockup-horizontal.svg" width="150" alt=""><figcaption>Digital &ge; 120px</figcaption></figure>
+            <figure><img src="old-north/monogram.svg" width="42" alt=""><figcaption>Submark &ge; 24px</figcaption></figure>
+            <figure><img src="favicon.svg" width="28" alt=""><figcaption>Favicon 16px ok</figcaption></figure>
+          </div>
+          <div class="u-note" style="margin-top:12px;">Below the minimum the mark breaks up &mdash; drop to the next simpler reduction rather than shrink the lockup. Embroidery legibility floor &asymp; 1.5&nbsp;in for the crest.</div>
+        </div>
+      </div>
+
+      <div class="usage-block">
+        <div class="u-lab">Colour spec</div>
+        <div class="usage-sub" style="margin-bottom:10px;">Hex for screen; CMYK / Pantone for print. Pantone values are approximate &mdash; confirm against a physical chip before ordering patches or banners.</div>
+        <div class="u-panel" style="overflow-x:auto;">
+          <table class="cspec">
+            <thead><tr><th>Colour</th><th>Role</th><th>HEX</th><th>CMYK</th><th>~Pantone</th></tr></thead>
+            <tbody>
+              <tr><td class="cname"><span class="sw" style="background:#17233F"></span>Old North Navy</td><td>Primary</td><td class="mono">#17233F</td><td class="mono">88&middot;74&middot;40&middot;30</td><td class="mono">2965 C</td></tr>
+              <tr><td class="cname"><span class="sw" style="background:#C1272D"></span>Athletic Red</td><td>Accent</td><td class="mono">#C1272D</td><td class="mono">15&middot;98&middot;95&middot;5</td><td class="mono">186 C</td></tr>
+              <tr><td class="cname"><span class="sw" style="background:#F7F2E7"></span>Bone / Cream</td><td>Ground</td><td class="mono">#F7F2E7</td><td class="mono">3&middot;4&middot;10&middot;0</td><td class="mono">7527 C</td></tr>
+              <tr><td class="cname"><span class="sw" style="background:#C9A03B"></span>Heritage Gold</td><td>Detail / rules only</td><td class="mono">#C9A03B</td><td class="mono">20&middot;36&middot;85&middot;2</td><td class="mono">7555 C</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="usage-block">
+        <div class="u-lab">Misuse &middot; don'ts</div>
+        <div class="dodont">
+          <div class="dd-col do"><h5>&#10022; Do</h5><ul>
+            <li>Keep navy dominant, red a sparing accent, gold for hairlines only.</li>
+            <li>Use the reversed mark on dark or photographic backgrounds.</li>
+            <li>Give every lockup its full one-star-height of clear space.</li>
+            <li>Drop to the simpler submark when space is tight.</li>
+          </ul></div>
+          <div class="dd-col dont"><h5>&#10005; Don't</h5><ul>
+            <li>Remove the red offset from the wordmark, or add offset where it isn't specified.</li>
+            <li>Stretch, condense, rotate, or add glow / bevel / drop-shadow to any mark.</li>
+            <li>Recolour outside the four brand colours, or fill type in gold.</li>
+            <li>Swap the star for the 柔道 kanji in the primary lockup.</li>
+            <li>Place the cream-ground mark on a busy photo without the knockout.</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
     </div>
     <div class="dnav"><button onclick="go('hk')">&larr; High-Key</button><div class="sp"></div><button onclick="go('np')">Newsprint &rarr;</button></div>
   </div>
@@ -506,6 +621,66 @@
         <div style="height:3px;background:#111;max-width:60%;"></div>
       </div><div class="vimg" style="background:repeating-linear-gradient(45deg,#f0f0f0 0 14px,#e7e7e7 14px 28px);color:#8a8a8a;"><svg width="42" height="88" style="position:absolute;top:18px;right:20px;transform:rotate(4deg);z-index:2;"><use class="np-hanko-slot" href="#np-h1"/></svg><span class="lab">Photo — B&amp;W splash</span></div></div>
     </div>
+    <div class="usage">
+      <div class="usage-block">
+        <div class="u-lab">System &amp; usage · Newsprint</div>
+        <div class="usage-h">The mark family</div>
+        <div class="usage-sub">What exists today, plus the open slots. Drop a correctly-named export into <code>newsprint/</code> and it appears here &mdash; see that folder's README and <a href="ASSETS.md" style="color:var(--accent);">ASSETS.md</a>.</div>
+        <div class="u-marks">
+          <div class="u-tile"><div class="u-canvas" style="background:#fff;"><img src="newsprint/symbol.svg" alt="Symbol" style="max-height:90px;"></div><div class="u-name">Primary symbol</div><div class="u-note">Sakura badge.</div></div>
+          <div class="u-tile"><div class="u-canvas" style="background:#fff;"><img src="newsprint/emblem.png" alt="Emblem" style="max-height:96px;"></div><div class="u-name">Emblem / seal</div><div class="u-note">Carolina American Judo badge.</div></div>
+          <div class="u-tile"><div class="u-canvas" style="background:#fff;"><img src="newsprint/hanko.svg" alt="Hanko" style="max-height:96px;"></div><div class="u-name">Hanko 柔道</div><div class="u-note">Accessory chop, not the CAJA mark.</div></div>
+          <div class="u-tile"><div class="u-canvas" style="background:transparent;border:1.5px dashed var(--line);color:var(--soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Drop asset</div><div class="u-name">Horizontal lockup</div><div class="u-note">Open slot &mdash; <code>lockup-horizontal.svg</code></div></div>
+          <div class="u-tile"><div class="u-canvas" style="background:transparent;border:1.5px dashed var(--line);color:var(--soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Drop asset</div><div class="u-name">Wordmark</div><div class="u-note">Open slot &mdash; <code>wordmark.svg</code></div></div>
+          <div class="u-tile"><div class="u-canvas" style="background:transparent;border:1.5px dashed var(--line);color:var(--soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Drop asset</div><div class="u-name">Monogram</div><div class="u-note">Open slot &mdash; <code>monogram.svg</code></div></div>
+        </div>
+      </div>
+      <div class="usage-block u-two">
+        <div class="u-panel">
+          <div class="u-lab">Clear space</div>
+          <div class="clearspace" style="background:#fff;"><div class="cs-box"><img src="newsprint/emblem.png" alt="Clear space diagram" style="max-height:94px;"></div></div>
+          <div class="u-note" style="margin-top:10px;">Keep clear space of <b style="color:var(--ink);">one quarter of the seal's diameter</b> on every side. Nothing &mdash; type, a rule, or a photo edge &mdash; enters that box.</div>
+        </div>
+        <div class="u-panel">
+          <div class="u-lab">Minimum size</div>
+          <div class="minsizes">
+            <figure><img src="newsprint/emblem.png" width="96" alt=""><figcaption>Seal &ge; 40px</figcaption></figure>
+            <figure><img src="newsprint/symbol.svg" width="40" alt=""><figcaption>Symbol &ge; 28px</figcaption></figure>
+          </div>
+          <div class="u-note" style="margin-top:12px;">Below the minimum the ring text fills in &mdash; drop to the bare symbol rather than shrink the full badge. Embroidery legibility floor &asymp; 1.5&nbsp;in.</div>
+        </div>
+      </div>
+      <div class="usage-block">
+        <div class="u-lab">Colour spec</div>
+        <div class="u-panel" style="overflow-x:auto;">
+          <table class="cspec">
+            <thead><tr><th>Colour</th><th>Role</th><th>HEX</th><th>CMYK</th><th>~Pantone</th></tr></thead>
+            <tbody>
+              <tr><td class="cname"><span class="sw" style="background:#111111"></span>Press Black</td><td>Primary</td><td class="mono">#111111</td><td class="mono">0&middot;0&middot;0&middot;93</td><td class="mono">Black 6 C</td></tr>
+              <tr><td class="cname"><span class="sw" style="background:#E0322A"></span>Stop Red</td><td>Accent</td><td class="mono">#E0322A</td><td class="mono">6&middot;92&middot;88&middot;0</td><td class="mono">185 C</td></tr>
+              <tr><td class="cname"><span class="sw" style="background:#FFFFFF;border-color:rgba(0,0,0,.2)"></span>Paper White</td><td>Ground</td><td class="mono">#FFFFFF</td><td class="mono">0&middot;0&middot;0&middot;0</td><td class="mono">&mdash;</td></tr>
+              <tr><td class="cname"><span class="sw" style="background:#8A8A8A"></span>Newsprint Grey</td><td>Detail</td><td class="mono">#8A8A8A</td><td class="mono">0&middot;0&middot;0&middot;46</td><td class="mono">Cool Grey 8 C</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="usage-block">
+        <div class="u-lab">Misuse &middot; don'ts</div>
+        <div class="dodont">
+          <div class="dd-col do"><h5>&#10022; Do</h5><ul>
+            <li>Keep it black &amp; white; spend the single red accent sparingly.</li>
+            <li>Let white space and strong horizontal rules carry the layout.</li>
+            <li>Anchor compositions with the seal / badge.</li>
+          </ul></div>
+          <div class="dd-col dont"><h5>&#10005; Don't</h5><ul>
+            <li>Add a second accent colour or any gradient.</li>
+            <li>Treat the hanko (柔道) as the CAJA mark &mdash; it's a separate chop.</li>
+            <li>Tint the black type or set it below newsprint legibility sizes.</li>
+            <li>Box the whole layout in heavy borders.</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
     </div>
     <div class="dnav"><button onclick="go('on')">&larr; Old North</button><div class="sp"></div><button onclick="go('hk')">High-Key &rarr;</button></div>
   </div>
@@ -581,6 +756,51 @@
         <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:52px;line-height:.9;letter-spacing:-2px;text-transform:uppercase;margin:14px 0 14px;">Train for <span style="color:#2F6BFF;">life.</span></div>
         <div><span style="background:#2F6BFF;color:#fff;padding:12px 22px;font-family:'Archivo',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:13px;border-radius:8px;">Try a free class</span></div>
       </div><div class="vimg" style="background:linear-gradient(135deg,#eaf0ff,#dde6f6);color:#7f92bb;"><span class="lab">Photo — power</span></div></div>
+    </div>
+    <div class="usage">
+      <div class="usage-block">
+        <div class="u-lab">System &amp; usage · High-Key Sport</div>
+        <div class="usage-h">The mark family</div>
+        <div class="usage-sub">What exists today, plus the open slots. Drop a correctly-named export into <code>high-key-sport/</code> and it appears here &mdash; see that folder's README and <a href="ASSETS.md" style="color:var(--accent);">ASSETS.md</a>.</div>
+        <div class="u-marks">
+          <div class="u-tile"><div class="u-canvas" style="background:#FBFBFA;"><img src="high-key-sport/symbol.png" alt="Symbol" style="max-height:92px;"></div><div class="u-name">Primary symbol</div><div class="u-note">Dogwood emblem.</div></div>
+          <div class="u-tile"><div class="u-canvas" style="background:#FBFBFA;"><img src="high-key-sport/emblem.svg" alt="Crest" style="max-height:100px;"></div><div class="u-name">Emblem / crest</div><div class="u-note">Dogwood botanical crest.</div></div>
+          <div class="u-tile"><div class="u-canvas plain"><img src="high-key-sport/emblem-seal.jpg" alt="Seal on blue" style="max-height:100px;border-radius:6px;"></div><div class="u-name">Emblem &mdash; seal</div><div class="u-note">Judo seal on electric blue.</div></div>
+          <div class="u-tile"><div class="u-canvas" style="background:transparent;border:1.5px dashed var(--line);color:var(--soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Drop asset</div><div class="u-name">Horizontal lockup</div><div class="u-note">Open slot &mdash; <code>lockup-horizontal.svg</code></div></div>
+          <div class="u-tile"><div class="u-canvas" style="background:transparent;border:1.5px dashed var(--line);color:var(--soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Drop asset</div><div class="u-name">Wordmark</div><div class="u-note">Open slot &mdash; <code>wordmark.svg</code></div></div>
+          <div class="u-tile"><div class="u-canvas" style="background:transparent;border:1.5px dashed var(--line);color:var(--soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Drop asset</div><div class="u-name">Monogram / app icon</div><div class="u-note">Open slot &mdash; <code>monogram.svg</code></div></div>
+        </div>
+      </div>
+      <div class="usage-block">
+        <div class="u-lab">Colour spec</div>
+        <div class="u-panel" style="overflow-x:auto;">
+          <table class="cspec">
+            <thead><tr><th>Colour</th><th>Role</th><th>HEX</th><th>CMYK</th><th>~Pantone</th></tr></thead>
+            <tbody>
+              <tr><td class="cname"><span class="sw" style="background:#2F6BFF"></span>Electric Blue</td><td>Primary energy</td><td class="mono">#2F6BFF</td><td class="mono">81&middot;58&middot;0&middot;0</td><td class="mono">2727 C</td></tr>
+              <tr><td class="cname"><span class="sw" style="background:#17181C"></span>Deep Ink</td><td>Type</td><td class="mono">#17181C</td><td class="mono">72&middot;65&middot;58&middot;62</td><td class="mono">Black C</td></tr>
+              <tr><td class="cname"><span class="sw" style="background:#FBFBFA;border-color:rgba(0,0,0,.2)"></span>Near-white</td><td>Ground</td><td class="mono">#FBFBFA</td><td class="mono">0&middot;0&middot;1&middot;2</td><td class="mono">&mdash;</td></tr>
+              <tr><td class="cname"><span class="sw" style="background:#E7E9EE"></span>Mist</td><td>Detail / cards</td><td class="mono">#E7E9EE</td><td class="mono">7&middot;4&middot;3&middot;0</td><td class="mono">Cool Grey 2 C</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="usage-block">
+        <div class="u-lab">Misuse &middot; don'ts</div>
+        <div class="dodont">
+          <div class="dd-col do"><h5>&#10022; Do</h5><ul>
+            <li>Keep grounds near-white and airy; electric blue as the single energy colour.</li>
+            <li>Use rounded shapes, generous spacing, and Poppins for display.</li>
+            <li>Let the dogwood mark be the graphic hero.</li>
+          </ul></div>
+          <div class="dd-col dont"><h5>&#10005; Don't</h5><ul>
+            <li>Darken the ground or crowd the layout.</li>
+            <li>Add a second bright colour alongside the blue.</li>
+            <li>Use heavy varsity or editorial type &mdash; this direction is clean and modern.</li>
+            <li>Stretch or recolour the dogwood outside blue / ink.</li>
+          </ul></div>
+        </div>
+      </div>
     </div>
     </div>
     <div class="dnav"><button onclick="go('np')">&larr; Newsprint</button><div class="sp"></div><button onclick="go('on')">Old North &rarr;</button></div>
