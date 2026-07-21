@@ -1,0 +1,6 @@
+# macOS
+.DS_Store
+
+# working files not needed for the published site
+lookbook archive/
+*.zip
