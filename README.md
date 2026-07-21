@@ -5,7 +5,7 @@ Its purpose: help the team agree on **one aesthetic direction** to prototype for
 
 ## View it
 
-Live site (GitHub Pages): **https://daniellachlanx.github.io/caja-lookbook/**
+Live site (GitHub Pages): **https://dxlachx.github.io/caja-lookbook/**
 
 Or open `index.html` locally in any browser.
 
