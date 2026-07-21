@@ -6,7 +6,7 @@ slot convention. Drop a correctly-named file here and it's picked up.
 | Slot | Status | File |
 |---|---|---|
 | Primary symbol | ✅ | `symbol.svg` (sakura badge) |
-| Emblem / crest | ✅ | `emblem.png` (Carolina American Judo seal) |
+| Emblem / crest | ✅ | `emblem.svg` (CAJA JUDO sakura ring badge, vector) |
 | Hanko stamp (柔道) | ✅ | `hanko.svg`, `hanko-bold.svg` — accessory, not the CAJA mark |
 | Horizontal lockup | ⬜ | drop `lockup-horizontal.svg` |
 | Stacked lockup | ⬜ | drop `lockup-stacked.svg` |
