@@ -227,13 +227,56 @@
   .home .card{border-radius:10px;padding:14px 15px 17px;min-height:118px;display:flex;flex-direction:column;gap:8px;}
   .home .card .cph{border-radius:7px;height:52px;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;}
   .home .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 24px;font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;}
+
+  /* sticky quick-nav */
+  .stickyhead{position:sticky;top:0;z-index:60;}
+  .stickyhead .topbar{position:static;}
+  .quicknav{background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .qn-wrap{display:flex;align-items:center;gap:8px;padding:8px 24px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .qn-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--soft);margin-right:2px;white-space:nowrap;}
+  .qn-btn{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.2px;color:var(--soft);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer;white-space:nowrap;transition:.15s;}
+  .qn-btn:hover{color:var(--ink);border-color:var(--soft);}
+  .qn-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+  /* card "view full preview" pill */
+  .ovcard .prev{position:relative;}
+  .ovcard .prev .prevbtn{position:absolute;bottom:12px;right:12px;z-index:3;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3px;background:rgba(255,255,255,.92);color:#1d1b17;border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:6px 11px;cursor:pointer;transition:.15s;}
+  .ovcard .prev .prevbtn:hover{background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.16);}
+
+  /* hero preview modal */
+  .modal{position:fixed;inset:0;z-index:200;display:none;}
+  .modal.open{display:block;}
+  .modal-scrim{position:absolute;inset:0;background:rgba(12,12,16,.62);backdrop-filter:blur(3px);}
+  .modal-card{position:relative;z-index:2;max-width:940px;width:calc(100% - 32px);margin:6vh auto;max-height:88vh;overflow:auto;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.55);animation:fade .25s ease;}
+  .modal-x{position:absolute;top:12px;right:12px;z-index:6;width:38px;height:38px;border-radius:50%;border:none;background:rgba(0,0,0,.5);color:#fff;font-size:22px;line-height:36px;text-align:center;cursor:pointer;transition:.15s;}
+  .modal-x:hover{background:rgba(0,0,0,.78);}
+  .hero-preview{overflow:hidden;border-radius:16px;}
+  .hero-preview .hp-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 30px;}
+  .hero-preview .hp-brand{display:inline-flex;align-items:center;gap:10px;}
+  .hero-preview .hp-links{text-transform:uppercase;letter-spacing:1.2px;font-weight:500;opacity:.85;}
+  .hero-preview .hp-body{padding:46px 40px 58px;position:relative;}
+  .hero-preview .hp-eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12.5px;font-weight:600;margin-bottom:16px;}
+  .hero-preview .hp-title{font-size:clamp(38px,6.4vw,72px);line-height:.92;margin-bottom:18px;}
+  .hero-preview .hp-sub{font-family:"Inter",sans-serif;font-size:15.5px;line-height:1.5;max-width:46ch;margin-bottom:26px;opacity:.82;}
+  .hero-preview .hp-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+  .hero-preview .hp-cta,.hero-preview .hp-cta2{display:inline-block;padding:13px 24px;font-size:14px;font-weight:600;cursor:default;}
+  @media(max-width:600px){.hero-preview .hp-links{display:none;}.hero-preview .hp-body{padding:34px 24px 44px;}}
 </style>
 
 
+<div class="stickyhead">
 <div class="topbar"><div class="wrap">
   <div class="ver"><span class="badge">INTERACTIVE</span><b>CAJA &mdash; Three Directions</b></div>
   <div class="crumb" id="crumb">Overview</div>
 </div></div>
+<nav class="quicknav" aria-label="Jump to a direction"><div class="wrap qn-wrap">
+  <span class="qn-label">Jump to</span>
+  <button class="qn-btn active" data-qn="overview" onclick="go('overview')">Overview</button>
+  <button class="qn-btn" data-qn="on" onclick="go('on')">1 · Old North</button>
+  <button class="qn-btn" data-qn="np" onclick="go('np')">2 · Newsprint</button>
+  <button class="qn-btn" data-qn="hk" onclick="go('hk')">3 · High-Key Sport</button>
+</div></nav>
+</div>
 
 
 <div class="view active" id="v-overview">
@@ -245,7 +288,7 @@
   <div class="wrap"><div class="ov-grid">
     
     <button class="ovcard" onclick="go('on')">
-      <div class="prev"><span style="display:inline-flex;align-items:center;gap:10px;"><svg width="30" height="30"><use href="#mk-star"/></svg><svg width="104" height="40"><use href="#mk-word"/></svg></span><div style="font-family:'Anton',sans-serif;font-size:34px;line-height:.85;text-transform:uppercase;">Train. Compete.<br><span style="color:#C1272D;">Belong.</span></div></div>
+      <div class="prev"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('on');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('on');}">⤢ View full preview</span><span style="display:inline-flex;align-items:center;gap:10px;"><svg width="30" height="30"><use href="#mk-star"/></svg><svg width="104" height="40"><use href="#mk-word"/></svg></span><div style="font-family:'Anton',sans-serif;font-size:34px;line-height:.85;text-transform:uppercase;">Train. Compete.<br><span style="color:#C1272D;">Belong.</span></div></div>
       <div class="meta">
         <div class="idx">Direction 01</div>
         <div class="nm">Old North</div>
@@ -255,7 +298,7 @@
     </button>
     
     <button class="ovcard" onclick="go('np')">
-      <div class="prev"><svg width="52" height="52"><use href="#np-s5"/></svg><div style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:29px;line-height:.95;letter-spacing:-1.5px;">The gentle way. <span style="color:#E0322A;">Practiced seriously.</span></div></div>
+      <div class="prev"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('np');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('np');}">⤢ View full preview</span><svg width="52" height="52"><use href="#np-s5"/></svg><div style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:29px;line-height:.95;letter-spacing:-1.5px;">The gentle way. <span style="color:#E0322A;">Practiced seriously.</span></div></div>
       <div class="meta">
         <div class="idx">Direction 02</div>
         <div class="nm">Newsprint</div>
@@ -265,7 +308,7 @@
     </button>
     
     <button class="ovcard" onclick="go('hk')">
-      <div class="prev"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:21px;letter-spacing:-1px;">CAJA</span></span><div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:30px;line-height:1.0;letter-spacing:-1px;">Move well.<br>Train for life.</div></div>
+      <div class="prev"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('hk');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('hk');}">⤢ View full preview</span><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:21px;letter-spacing:-1px;">CAJA</span></span><div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:30px;line-height:1.0;letter-spacing:-1px;">Move well.<br>Train for life.</div></div>
       <div class="meta">
         <div class="idx">Direction 03</div>
         <div class="nm">High-Key Sport</div>
@@ -571,6 +614,7 @@
     document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
     var el=document.getElementById('v-'+id); if(el) el.classList.add('active');
     document.getElementById('crumb').innerHTML = id==='overview' ? 'Overview' : 'Overview &rsaquo; '+CRUMB[id];
+    document.querySelectorAll('.qn-btn').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-qn')===id); });
     window.scrollTo({top:0,behavior:'auto'});
   }
   function setHref(el,id){ if(el){el.setAttribute('href','#'+id);el.setAttribute('xlink:href','#'+id);} }
@@ -598,7 +642,56 @@
     setHref(document.querySelector('.inv-wordR'),id+'-rev');
     btn.parentNode.querySelectorAll('.exchip').forEach(function(c){c.classList.remove('on');}); btn.classList.add('on');
   }
+
+  /* ---- hero preview modal ---- */
+  var HEROES = {
+    on: `<div class="hero-preview" style="background:#F7F2E7;color:#17233F;">
+      <div class="hp-nav"><span class="hp-brand"><svg width="26" height="26"><use href="#mk-star"/></svg><svg width="82" height="30"><use href="#mk-word"/></svg></span><span class="hp-links" style="font-family:'Oswald',sans-serif;color:#17233F;">Programs · Schedule · About</span></div>
+      <div class="hp-body">
+        <div class="hp-eyebrow" style="font-family:'Oswald',sans-serif;color:#C1272D;">Est · Matthews NC · USJF</div>
+        <div class="hp-title" style="font-family:'Anton',sans-serif;text-transform:uppercase;">Train. Compete. <span style="color:#C1272D;">Belong.</span></div>
+        <div class="hp-sub">Traditional judo for every age in Matthews, North Carolina — discipline, respect, and a team that trains like family.</div>
+        <div class="hp-ctas"><span class="hp-cta" style="background:#C1272D;color:#fff;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1px;border-radius:3px;">Try a free class</span><span class="hp-cta2" style="border:2px solid #17233F;color:#17233F;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1px;border-radius:3px;">Schedule</span></div>
+      </div></div>`,
+    np: `<div class="hero-preview" style="background:#fff;color:#111;">
+      <div class="hp-nav" style="border-bottom:1px solid #111;"><span class="hp-brand"><svg width="34" height="34"><use href="#np-s5"/></svg><span style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:20px;letter-spacing:-1px;">CAJA</span></span><span class="hp-links" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#111;">Programs · Schedule · About</span></div>
+      <div class="hp-body">
+        <div class="hp-eyebrow" style="font-family:'JetBrains Mono',monospace;color:#111;border-bottom:1px solid #111;display:inline-block;padding-bottom:6px;">CAJA · Carolina's American Judo · Matthews NC</div>
+        <div class="hp-title" style="font-family:'Libre Franklin',sans-serif;font-weight:900;letter-spacing:-2px;">The gentle way. <span style="color:#E0322A;">Practiced seriously.</span></div>
+        <div class="hp-sub">A Matthews, NC judo dojo for every age — technical, welcoming, and serious about the craft.</div>
+        <div class="hp-ctas"><span class="hp-cta" style="background:#111;color:#fff;font-family:'Libre Franklin',sans-serif;">Try a free class →</span></div>
+      </div></div>`,
+    hk: `<div class="hero-preview" style="background:#FBFBFA;color:#17181C;">
+      <div class="hp-nav"><span class="hp-brand"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:20px;letter-spacing:-1px;">CAJA</span></span><span class="hp-links" style="font-family:'Poppins',sans-serif;font-weight:500;font-size:13px;color:#17181C;">Programs · Schedule · About</span></div>
+      <div class="hp-body">
+        <div class="hp-eyebrow" style="font-family:'Poppins',sans-serif;color:#2F6BFF;">Carolina's American Judo · Matthews</div>
+        <div class="hp-title" style="font-family:'Poppins',sans-serif;font-weight:800;letter-spacing:-1.5px;">Move well. Train for life.</div>
+        <div class="hp-sub">Bright, modern judo in Matthews, NC — for beginners and competitors who want to move well and train for life.</div>
+        <div class="hp-ctas"><span class="hp-cta" style="background:#17181C;color:#fff;border-radius:999px;font-family:'Poppins',sans-serif;">Try a free class</span><span class="hp-cta2" style="color:#2F6BFF;border:1.5px solid #cdd8f5;border-radius:999px;font-family:'Poppins',sans-serif;">Schedule</span></div>
+      </div></div>`
+  };
+  function openHero(id){
+    var stage=document.getElementById('heroStage'); if(!stage) return;
+    stage.innerHTML = HEROES[id] || '';
+    var m=document.getElementById('heroModal');
+    m.classList.add('open'); m.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeHero(){
+    var m=document.getElementById('heroModal');
+    m.classList.remove('open'); m.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeHero(); });
 </script>
+
+<div class="modal" id="heroModal" aria-hidden="true">
+  <div class="modal-scrim" onclick="closeHero()"></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-label="Hero banner preview">
+    <button class="modal-x" onclick="closeHero()" aria-label="Close preview">&times;</button>
+    <div class="modal-stage" id="heroStage"></div>
+  </div>
+</div>
 
 </body>
 </html>
