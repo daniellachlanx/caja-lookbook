@@ -18,7 +18,12 @@
   html{scroll-behavior:smooth;}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s;}
   a{color:inherit;}
+  button{font-family:inherit;}
+  ::selection{background:var(--accent);color:#fff;}
+  :focus{outline:none;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:5px;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  @media(max-width:560px){.wrap{padding:0 18px;}}
   h1,h2,h3{line-height:1.06;margin:0;}
 
   .topbar{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
@@ -26,9 +31,11 @@
   .ver{display:flex;align-items:center;gap:10px;}
   .badge{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1px;background:var(--accent);color:#fff;padding:4px 9px;border-radius:6px;font-weight:700;}
   .ver b{font-family:"Instrument Serif",serif;font-size:18px;font-weight:400;}
-  .tb-actions{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--soft);}
-  .tb-actions button{font-family:inherit;font-size:12.5px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;}
+  .tb-actions{display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--soft);}
+  .tb-actions button{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.3px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 13px;cursor:pointer;transition:border-color .15s,color .15s,background .15s;white-space:nowrap;}
+  .tb-actions button:hover{border-color:var(--soft);}
   #favcount b{color:var(--ink);}
+  @media(max-width:640px){.topbar .crumb{display:none;}}
 
   .mast{border-bottom:1px solid var(--line);background:radial-gradient(120% 120% at 82% -20%,rgba(201,104,63,.16),transparent 55%);}
   .mast .wrap{padding:56px 24px 48px;}
@@ -210,9 +217,10 @@
   .vhint b{color:var(--ink);}
 
   /* one-line rationale placeholder */
-  .rationale{display:flex;align-items:flex-start;gap:12px;border:1px dashed var(--soft);border-radius:10px;padding:12px 15px;margin:6px 0 18px;background:color-mix(in srgb,var(--accent) 6%,transparent);}
-  .rationale .rk{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);font-weight:700;padding-top:3px;white-space:nowrap;}
-  .rationale .rt{font-size:13.5px;color:var(--soft);line-height:1.55;}
+  .rationale{display:flex;align-items:flex-start;gap:16px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:2px 12px 12px 2px;padding:16px 20px;margin:8px 0 24px;background:color-mix(in srgb,var(--accent) 5%,var(--panel));}
+  @media(max-width:560px){.rationale{flex-direction:column;gap:8px;padding:14px 16px;}}
+  .rationale .rk{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700;padding-top:4px;white-space:nowrap;}
+  .rationale .rt{font-size:14px;color:var(--soft);line-height:1.62;}
   .rationale .rt b{color:var(--ink);font-style:normal;}
 
   /* homepage-layout placeholder (browser frame) */
@@ -309,13 +317,33 @@
   .dd-col li::before{position:absolute;left:0;top:0;font-weight:700;}
   .dd-col.do li::before{content:"✓";color:#2e7d46;}
   .dd-col.dont li::before{content:"✕";color:#c1272d;}
+
+  /* ---- responsive & interaction polish ---- */
+  .exchip,.qn-btn,.fav,.vfav,.sealchip,.back,.dnav button,.prevbtn,.modal-x{transition:background .15s,border-color .15s,color .15s,box-shadow .15s,transform .12s;}
+  .exchip:active,.qn-btn:active,.sealchip:active,.back:active,.dnav button:active{transform:translateY(1px);}
+  .sealchip:hover{border-color:var(--soft);}
+  .voice{transition:border-color .16s,box-shadow .16s;}
+  .voice:hover{border-color:var(--soft);}
+  @media(max-width:900px){.mast .wrap{padding:48px 24px 40px;}}
+  @media(max-width:760px){
+    .vtext{padding:26px 24px;}
+    .vgrid{min-height:0;}
+    .vimg{min-height:190px;}
+  }
+  @media(max-width:560px){
+    .mast .wrap{padding:38px 18px 32px;}
+    .id{padding:38px 0;}
+    .id-right{align-items:flex-start;width:100%;flex-direction:row;justify-content:space-between;}
+    .vtext{padding:24px 20px;}
+    .ov-grid{gap:16px;padding:28px 0 52px;}
+  }
 </style>
 
 
 <div class="stickyhead">
 <div class="topbar"><div class="wrap">
   <div class="ver"><span class="badge">INTERACTIVE</span><b>CAJA &mdash; Three Directions</b></div>
-  <div class="crumb" id="crumb">Overview</div>
+  <div class="tb-actions"><div class="crumb" id="crumb">Overview</div><button id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark and light mode" title="Toggle dark / light mode">🌙 Dark</button></div>
 </div></div>
 <nav class="quicknav" aria-label="Jump to a direction"><div class="wrap qn-wrap">
   <span class="qn-label">Jump to</span>
@@ -336,7 +364,7 @@
   <div class="wrap"><div class="ov-grid">
     
     <button class="ovcard" onclick="go('on')">
-      <div class="prev"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('on');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('on');}">⤢ View full preview</span><span style="display:inline-flex;align-items:center;gap:10px;"><svg width="30" height="30"><use href="#mk-star"/></svg><svg width="104" height="40"><use href="#mk-word-red"/></svg></span><div style="font-family:'Anton',sans-serif;font-size:34px;line-height:.85;text-transform:uppercase;">Train. Compete.<br><span style="color:#C1272D;">Belong.</span></div></div>
+      <div class="prev" style="background:#F7F2E7;color:#17233F;"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('on');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('on');}">⤢ View full preview</span><span style="display:inline-flex;align-items:center;gap:10px;"><svg width="30" height="30"><use href="#mk-star"/></svg><svg width="104" height="40"><use href="#mk-word-red"/></svg></span><div style="font-family:'Anton',sans-serif;font-size:34px;line-height:.85;text-transform:uppercase;">Train. Compete.<br><span style="color:#C1272D;">Belong.</span></div></div>
       <div class="meta">
         <div class="idx">Direction 01</div>
         <div class="nm">Old North</div>
@@ -346,7 +374,7 @@
     </button>
     
     <button class="ovcard" onclick="go('np')">
-      <div class="prev"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('np');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('np');}">⤢ View full preview</span><svg width="52" height="52"><use href="#np-s5"/></svg><div style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:29px;line-height:.95;letter-spacing:-1.5px;">The gentle way. <span style="color:#E0322A;">Practiced seriously.</span></div></div>
+      <div class="prev" style="background:#FFFFFF;color:#111111;"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('np');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('np');}">⤢ View full preview</span><svg width="52" height="52"><use href="#np-s5"/></svg><div style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:29px;line-height:.95;letter-spacing:-1.5px;">The gentle way. <span style="color:#E0322A;">Practiced seriously.</span></div></div>
       <div class="meta">
         <div class="idx">Direction 02</div>
         <div class="nm">Newsprint</div>
@@ -356,7 +384,7 @@
     </button>
     
     <button class="ovcard" onclick="go('hk')">
-      <div class="prev"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('hk');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('hk');}">⤢ View full preview</span><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:21px;letter-spacing:-1px;">CAJA</span></span><div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:30px;line-height:1.0;letter-spacing:-1px;">Move well.<br>Train for life.</div></div>
+      <div class="prev" style="background:#FBFBFA;color:#17181C;"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('hk');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('hk');}">⤢ View full preview</span><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:21px;letter-spacing:-1px;">CAJA</span></span><div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:30px;line-height:1.0;letter-spacing:-1px;">Move well.<br>Train for life.</div></div>
       <div class="meta">
         <div class="idx">Direction 03</div>
         <div class="nm">High-Key Sport</div>
@@ -425,7 +453,7 @@
       <div class="hero">
         <div>
           <div style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:2px;font-size:12px;color:#C1272D;font-weight:600;">Est &middot; Matthews NC &middot; USJF</div>
-          <div style="font-family:'Anton',sans-serif;font-size:50px;line-height:.86;text-transform:uppercase;margin:12px 0 12px;">Train. Compete. <span style="color:#C1272D;">Belong.</span></div>
+          <div style="font-family:'Anton',sans-serif;font-size:clamp(30px,7.2vw,50px);line-height:.86;text-transform:uppercase;margin:12px 0 12px;">Train. Compete. <span style="color:#C1272D;">Belong.</span></div>
           <div style="font-family:'Inter',sans-serif;font-size:13.5px;color:#4a5670;max-width:42ch;margin-bottom:18px;">Traditional judo for every age in Matthews, North Carolina — discipline, respect, and a team that trains like family.</div>
           <span style="background:#C1272D;color:#fff;padding:11px 18px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1px;font-weight:600;font-size:13px;border-radius:3px;">Try a free class</span>
           <span style="border:2px solid #17233F;color:#17233F;padding:9px 15px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1px;font-weight:600;font-size:13px;border-radius:3px;margin-left:7px;display:inline-block;">Schedule</span>
@@ -444,7 +472,7 @@
       <div class="vgrid"><div class="vtext" style="background:#F7F2E7;color:#17233F;">
         <div style="position:relative;z-index:1;">
         <div style="display:flex;align-items:center;gap:8px;"><svg width="15" height="15" style="flex:none;"><use class="sym-slot" href="#mk-star"/></svg><span style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:2px;font-size:12px;color:#C1272D;font-weight:600;">Est · Matthews NC · USJF</span></div>
-        <div style="font-family:'Anton',sans-serif;font-size:54px;line-height:.84;text-transform:uppercase;margin:12px 0 14px;">Train. Compete. <span style="color:#C1272D;">Belong.</span></div>
+        <div style="font-family:'Anton',sans-serif;font-size:clamp(30px,8vw,54px);line-height:.84;text-transform:uppercase;margin:12px 0 14px;">Train. Compete. <span style="color:#C1272D;">Belong.</span></div>
         <div><span style="background:#C1272D;color:#fff;padding:11px 18px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1px;font-weight:600;font-size:13px;">Try a free class</span></div>
         </div>
       </div><div class="vimg" style="background:linear-gradient(135deg,#20335A,#14203a);color:rgba(255,255,255,.6);"><svg width="210" height="210" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:.13;"><use href="#mk-star-rev"/></svg><span class="lab">Photo — team / action</span></div></div>
@@ -454,7 +482,7 @@
       <div class="vgrid solo"><div class="vtext" style="background:#F7F2E7;color:#17233F;text-align:center;align-items:center;padding:34px 30px;">
         <svg width="330" height="50" viewBox="0 0 360 62" style="display:block;margin:0 auto;overflow:visible;transform:translateY(25px);"><path id="arcLB" d="M24,58 A175,175 0 0,1 336,58" fill="none"/><text font-family="Graduate, serif" font-size="12" letter-spacing="1.6" fill="#17233F"><textPath href="#arcLB" startOffset="50%" text-anchor="middle">EST · MATTHEWS · NORTH CAROLINA</textPath></text></svg>
         <div style="display:flex;justify-content:center;margin:-16px auto 12px;"><svg width="70" height="70" style="display:block;"><use class="sym-slot" href="#mk-star"/></svg></div>
-        <div style="font-family:'Graduate',serif;color:#C1272D;-webkit-text-stroke:1.3px #C1272D;font-size:44px;line-height:.95;letter-spacing:1px;text-transform:uppercase;margin:0 0 6px;">Carolina's</div>
+        <div style="font-family:'Graduate',serif;color:#C1272D;-webkit-text-stroke:1.3px #C1272D;font-size:clamp(30px,7vw,44px);line-height:.95;letter-spacing:1px;text-transform:uppercase;margin:0 0 6px;">Carolina's</div>
         <div style="font-family:'Graduate',serif;color:#17233F;-webkit-text-stroke:.7px #17233F;letter-spacing:3px;font-size:24px;text-transform:uppercase;">American Judo</div>
         <div style="height:1px;background:#C9A03B;width:150px;margin:14px auto 0;"></div>
       </div></div>
@@ -464,7 +492,7 @@
       <div class="vgrid"><div class="vtext" style="background:#F7F2E7;color:#17233F;">
         <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;"><svg width="24" height="24" style="flex:none;display:block;"><use class="sym-slot" href="#mk-star"/></svg><svg width="74" height="29" style="flex:none;display:block;"><use class="word-slot" href="#mk-word-red"/></svg><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8791a5;text-transform:uppercase;letter-spacing:1px;">/ North Carolina</span></div>
         <div style="height:2px;background:#17233F;margin-bottom:12px;"></div>
-        <div style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:40px;line-height:.98;letter-spacing:-1.5px;">Train. Compete. <span style="color:#C1272D;">Belong.</span></div>
+        <div style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:clamp(27px,6.2vw,40px);line-height:.98;letter-spacing:-1.5px;">Train. Compete. <span style="color:#C1272D;">Belong.</span></div>
         <div style="margin-top:14px;"><span style="background:#17233F;color:#fff;padding:10px 18px;font-family:'Libre Franklin',sans-serif;font-weight:600;font-size:12px;">Try a free class</span></div>
       </div><div class="vimg" style="background:linear-gradient(135deg,#20335A,#14203a);color:rgba(255,255,255,.6);"><svg width="210" height="210" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:.13;"><use href="#mk-star-rev"/></svg><span class="lab">Photo — portrait / lineage</span></div></div>
     </div>
@@ -586,7 +614,7 @@
       <div class="hero">
         <div>
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#999;border-bottom:1px solid #111;padding-bottom:7px;margin-bottom:14px;">CAJA — Carolina's American Judo · Matthews NC</div>
-          <div style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:44px;line-height:.94;letter-spacing:-2px;margin-bottom:12px;">The gentle way. <span style="color:#E0322A;">Practiced seriously.</span></div>
+          <div style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:clamp(28px,7vw,44px);line-height:.94;letter-spacing:-2px;margin-bottom:12px;">The gentle way. <span style="color:#E0322A;">Practiced seriously.</span></div>
           <div style="font-family:'Inter',sans-serif;font-size:13.5px;color:#555;max-width:42ch;margin-bottom:18px;">A Matthews, NC judo dojo for every age — technical, welcoming, and serious about the craft.</div>
           <span style="background:#111;color:#fff;padding:11px 18px;font-family:'Libre Franklin',sans-serif;font-weight:600;font-size:13px;">Try a free class →</span>
         </div>
@@ -604,7 +632,7 @@
       <div class="vgrid"><div class="vtext" style="background:#fff;color:#111;">
         <div style="position:absolute;top:28px;left:34px;z-index:2;"><svg width="58" height="58" style="display:block;"><use class="np-seal-slot" href="#np-s5"/></svg></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#999;border-bottom:1px solid #111;padding-bottom:8px;">CAJA — Carolina's American Judo · Matthews NC</div>
-        <div style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:46px;line-height:.94;letter-spacing:-2px;margin:18px 0 14px;">The gentle way. <span style="color:#E0322A;">Practiced seriously.</span></div>
+        <div style="font-family:'Libre Franklin',sans-serif;font-weight:900;font-size:clamp(28px,7.2vw,46px);line-height:.94;letter-spacing:-2px;margin:18px 0 14px;">The gentle way. <span style="color:#E0322A;">Practiced seriously.</span></div>
         <div><span style="background:#111;color:#fff;padding:11px 18px;font-family:'Libre Franklin',sans-serif;font-weight:600;font-size:13px;">Try a free class →</span></div>
       </div><div class="vimg" style="background:repeating-linear-gradient(45deg,#f0f0f0 0 14px,#e7e7e7 14px 28px);color:#8a8a8a;"><svg width="42" height="88" style="position:absolute;top:18px;right:20px;transform:rotate(4deg);z-index:2;"><use class="np-hanko-slot" href="#np-h1"/></svg><span class="lab">Photo — B&amp;W action</span></div></div>
     </div>
@@ -613,7 +641,7 @@
       <div class="vgrid"><div class="vtext" style="background:#fff;color:#111;">
         <div style="position:absolute;top:28px;left:34px;z-index:2;"><svg width="58" height="58" style="display:block;"><use class="np-seal-slot" href="#np-s5"/></svg></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#E0322A;border-bottom:3px solid #111;padding-bottom:7px;display:inline-block;">Why CAJA · Matthews NC</div>
-        <div style="font-family:'Zilla Slab',serif;font-weight:700;font-size:44px;line-height:.98;margin:16px 0 12px;">The gentle way<span style="color:#E0322A;">.</span> Practiced <span style="background:#111;color:#fff;padding:0 6px;">seriously.</span></div>
+        <div style="font-family:'Zilla Slab',serif;font-weight:700;font-size:clamp(28px,7vw,44px);line-height:.98;margin:16px 0 12px;">The gentle way<span style="color:#E0322A;">.</span> Practiced <span style="background:#111;color:#fff;padding:0 6px;">seriously.</span></div>
         <div><span style="background:#E0322A;color:#fff;padding:10px 18px;font-family:'Zilla Slab',serif;font-weight:700;font-size:13px;">Try a free class</span></div>
       </div><div class="vimg" style="background:repeating-linear-gradient(45deg,#f0f0f0 0 14px,#e7e7e7 14px 28px);color:#8a8a8a;"><svg width="42" height="88" style="position:absolute;top:18px;right:20px;transform:rotate(4deg);z-index:2;"><use class="np-hanko-slot" href="#np-h1"/></svg><span class="lab">Photo — B&amp;W</span></div></div>
     </div>
@@ -622,7 +650,7 @@
       <div class="vgrid"><div class="vtext" style="background:#fff;color:#111;">
         <div style="position:absolute;top:28px;left:34px;z-index:2;"><svg width="58" height="58" style="display:block;"><use class="np-seal-slot" href="#np-s5"/></svg></div>
         <div style="background:#E0322A;color:#fff;display:inline-block;padding:3px 9px;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;">Carolina's American Judo · Matthews NC</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:66px;line-height:.84;letter-spacing:1px;margin:12px 0 6px;">The gentle way.<br><span style="color:#E0322A;">Practiced seriously.</span></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,10vw,66px);line-height:.84;letter-spacing:1px;margin:12px 0 6px;">The gentle way.<br><span style="color:#E0322A;">Practiced seriously.</span></div>
         <div style="height:3px;background:#111;max-width:60%;"></div>
       </div><div class="vimg" style="background:repeating-linear-gradient(45deg,#f0f0f0 0 14px,#e7e7e7 14px 28px);color:#8a8a8a;"><svg width="42" height="88" style="position:absolute;top:18px;right:20px;transform:rotate(4deg);z-index:2;"><use class="np-hanko-slot" href="#np-h1"/></svg><span class="lab">Photo — B&amp;W splash</span></div></div>
     </div>
@@ -706,7 +734,7 @@
       <div class="hero">
         <div>
           <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;color:#2F6BFF;text-transform:uppercase;">Carolina's American Judo · Matthews</div>
-          <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:46px;line-height:1.02;letter-spacing:-1.5px;margin:12px 0 12px;">Move well. Train for life.</div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(29px,7vw,46px);line-height:1.02;letter-spacing:-1.5px;margin:12px 0 12px;">Move well. Train for life.</div>
           <div style="font-family:'Inter',sans-serif;font-size:13.5px;color:#5b6270;max-width:42ch;margin-bottom:20px;">Bright, modern judo in Matthews, NC — for beginners and competitors who want to move well and train for life.</div>
           <span style="background:#17181C;color:#fff;padding:12px 22px;border-radius:999px;font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;">Try a free class</span>
           <span style="color:#2F6BFF;border:1.5px solid #cdd8f5;padding:10px 18px;border-radius:999px;font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;margin-left:7px;display:inline-block;">Schedule</span>
@@ -725,7 +753,7 @@
       <div class="vgrid"><div class="vtext" style="background:#FBFBFA;color:#17181C;">
         <div style="position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#2F6BFF,transparent 70%);opacity:.13;"></div>
         <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;color:#2F6BFF;text-transform:uppercase;">Carolina's American Judo · Matthews</div>
-        <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:46px;line-height:1.02;letter-spacing:-1.5px;margin:14px 0 14px;">Move well. Train for life.</div>
+        <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(29px,7vw,46px);line-height:1.02;letter-spacing:-1.5px;margin:14px 0 14px;">Move well. Train for life.</div>
         <div><span style="background:#17181C;color:#fff;padding:12px 22px;border-radius:999px;font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;">Try a free class</span></div>
       </div><div class="vimg" style="background:linear-gradient(135deg,#eaf0ff,#dde6f6);color:#7f92bb;"><span class="lab">Photo — bright, in motion</span></div></div>
     </div>
@@ -733,7 +761,7 @@
     <div class="voice"><div class="vtag"><b>Performance</b><span>Space Grotesk · training-app</span></div>
       <div class="vgrid"><div class="vtext" style="background:#FBFBFA;color:#17181C;">
         <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#999;border-bottom:1px solid #e5e7eb;padding-bottom:7px;max-width:420px;"><span>CAJA / Matthews</span><span style="color:#2F6BFF;">白→黒</span></div>
-        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:40px;line-height:.98;letter-spacing:-1px;margin:14px 0 12px;">Train for life. <span style="color:#2F6BFF;">Measured in reps.</span></div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,6.2vw,40px);line-height:.98;letter-spacing:-1px;margin:14px 0 12px;">Train for life. <span style="color:#2F6BFF;">Measured in reps.</span></div>
         <div style="display:flex;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;max-width:320px;"><div style="flex:1;padding:9px 12px;border-right:1px solid #e5e7eb;"><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;">6</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;text-transform:uppercase;color:#999;">days</div></div><div style="flex:1;padding:9px 12px;border-right:1px solid #e5e7eb;"><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:#2F6BFF;">47</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;text-transform:uppercase;color:#999;">throws</div></div><div style="flex:1;padding:9px 12px;"><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;">150+</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;text-transform:uppercase;color:#999;">members</div></div></div>
       </div><div class="vimg" style="background:linear-gradient(135deg,#eaf0ff,#dde6f6);color:#7f92bb;"><span class="lab">Photo — training</span></div></div>
     </div>
@@ -741,7 +769,7 @@
     <div class="voice"><div class="vtag"><b>Power</b><span>Archivo 900 · muscular</span></div>
       <div class="vgrid"><div class="vtext" style="background:#FBFBFA;color:#17181C;">
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#2F6BFF;text-transform:uppercase;font-weight:700;">Carolina's American Judo · Matthews NC</div>
-        <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:52px;line-height:.9;letter-spacing:-2px;text-transform:uppercase;margin:14px 0 14px;">Train for <span style="color:#2F6BFF;">life.</span></div>
+        <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(30px,7.6vw,52px);line-height:.9;letter-spacing:-2px;text-transform:uppercase;margin:14px 0 14px;">Train for <span style="color:#2F6BFF;">life.</span></div>
         <div><span style="background:#2F6BFF;color:#fff;padding:12px 22px;font-family:'Archivo',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:13px;border-radius:8px;">Try a free class</span></div>
       </div><div class="vimg" style="background:linear-gradient(135deg,#eaf0ff,#dde6f6);color:#7f92bb;"><span class="lab">Photo — power</span></div></div>
     </div>
@@ -797,6 +825,23 @@
 
 <script>
   function recount(){}
+  function applyThemeLabel(){
+    var btn=document.getElementById('themeToggle'); if(!btn) return;
+    var light=document.body.classList.contains('light');
+    btn.textContent = light ? '🌙 Dark' : '☀︎ Light';
+  }
+  function toggleTheme(){
+    document.body.classList.toggle('light');
+    try{ localStorage.setItem('caja-theme', document.body.classList.contains('light') ? 'light' : 'dark'); }catch(e){}
+    applyThemeLabel();
+  }
+  (function(){
+    try{ var t=localStorage.getItem('caja-theme');
+      if(t==='dark') document.body.classList.remove('light');
+      else if(t==='light') document.body.classList.add('light');
+    }catch(e){}
+    applyThemeLabel();
+  })();
   function fav(btn){
     btn.classList.toggle('on');
     btn.textContent = btn.classList.contains('on') ? '★ Favorited' : '☆ Favorite';
