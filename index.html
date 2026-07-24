@@ -10,10 +10,10 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Archivo:wght@400;600;700;900&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Graduate&family=Hanken+Grotesk:wght@400;500;700;800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Kanit:wght@800;900&family=Libre+Franklin:wght@400;600;700;900&family=Oswald:wght@400;500;600;700&family=Pinyon+Script&family=Poppins:wght@400;500;600;700;800&family=Shippori+Mincho:wght@700;800&family=Space+Grotesk:wght@400;500;700&family=UnifrakturMaguntia&family=Zilla+Slab:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Archivo:wght@400;600;700;900&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Graduate&family=Hanken+Grotesk:wght@400;500;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Kanit:wght@800;900&family=Libre+Franklin:wght@400;600;700;900&family=Oswald:wght@400;500;600;700&family=Pinyon+Script&family=Shippori+Mincho:wght@700;800&family=Space+Grotesk:wght@400;500;700&family=UnifrakturMaguntia&family=Zilla+Slab:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  :root{ --bg:#101014; --panel:#17171c; --ink:#ecebe6; --soft:#9a9aa4; --line:#28282f; --accent:#c9683f; --maxw:1180px; }
-  body.light{ --bg:#f2f0ea; --panel:#ffffff; --ink:#1d1b17; --soft:#6b6459; --line:#e2dccf; }
+  :root{ --bg:#141412; --panel:#1c1c19; --ink:#eceae3; --soft:#948f84; --line:#2b2a26; --accent:#a7a196; --sig:#83b06f; --toolbar:#191917; --chip:#eceae3; --maxw:1180px; }
+  body.light{ --bg:#ececeb; --panel:#f9f9f8; --ink:#211f1c; --soft:#6b665d; --line:#dcdbd6; --accent:#5c564d; --sig:#5f7a55; --toolbar:#e5e5e3; --chip:#211f1c; }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s;}
@@ -26,30 +26,31 @@
   @media(max-width:560px){.wrap{padding:0 18px;}}
   h1,h2,h3{line-height:1.06;margin:0;}
 
-  .topbar{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 24px;}
+  .topbar{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--toolbar) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 24px;}
   .ver{display:flex;align-items:center;gap:10px;}
-  .badge{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1px;background:var(--accent);color:#fff;padding:4px 9px;border-radius:6px;font-weight:700;}
-  .ver b{font-family:"Instrument Serif",serif;font-size:18px;font-weight:400;}
+  .badge{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.8px;background:var(--chip);color:var(--bg);padding:3px 8px;border-radius:5px;font-weight:700;text-transform:uppercase;}
+  .ver b{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:500;letter-spacing:.2px;color:var(--ink);}
   .tb-actions{display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--soft);}
-  .tb-actions button{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.3px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 13px;cursor:pointer;transition:border-color .15s,color .15s,background .15s;white-space:nowrap;}
+  .tb-actions button{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.3px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 11px;cursor:pointer;transition:border-color .15s,color .15s,background .15s;white-space:nowrap;}
   .tb-actions button:hover{border-color:var(--soft);}
   #favcount b{color:var(--ink);}
   @media(max-width:640px){.topbar .crumb{display:none;}}
 
-  .mast{border-bottom:1px solid var(--line);background:radial-gradient(120% 120% at 82% -20%,rgba(201,104,63,.16),transparent 55%);}
-  .mast .wrap{padding:56px 24px 48px;}
-  .kicker{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
-  .mast h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(38px,6.4vw,70px);letter-spacing:-.5px;max-width:17ch;line-height:1.0;}
-  .mast p{color:var(--soft);font-size:clamp(16px,2vw,19px);max-width:66ch;margin-top:18px;}
+  .mast{border-bottom:1px solid var(--line);background:var(--bg);}
+  .mast .wrap{padding:44px 24px 40px;}
+  .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--soft);margin-bottom:16px;display:inline-flex;align-items:center;gap:9px;}
+  .kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sig);flex:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--sig) 24%,transparent);}
+  .mast h1{font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:800;font-size:clamp(30px,5.2vw,54px);letter-spacing:-1.6px;max-width:20ch;line-height:1.03;}
+  .mast p{color:var(--soft);font-size:clamp(15px,1.8vw,17.5px);max-width:64ch;margin-top:16px;}
 
   .matrix{padding:44px 0;border-bottom:1px solid var(--line);}
-  .matrix h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(24px,3.2vw,34px);}
+  .matrix h2{font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:800;letter-spacing:-.8px;font-size:clamp(24px,3.2vw,34px);}
   .matrix .lede{color:var(--soft);font-size:15px;margin:8px 0 22px;max-width:64ch;}
   .mtable{width:100%;border-collapse:collapse;font-size:13.5px;}
   .mtable th,.mtable td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
   .mtable th{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--soft);font-weight:500;}
-  .mtable td.name{font-family:"Instrument Serif",serif;font-size:19px;white-space:nowrap;}
+  .mtable td.name{font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:700;letter-spacing:-.3px;font-size:18px;white-space:nowrap;}
   .mtable td .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:middle;}
   .mtable td.soft{color:var(--soft);}
   .mtable tr.grp td{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink);font-weight:700;padding:20px 0 8px;border-bottom:2px solid var(--ink);}
@@ -57,7 +58,7 @@
 
   .grouphead{padding:44px 0 4px;}
   .grouphead .gl-idx{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:11.5px;letter-spacing:2px;text-transform:uppercase;}
-  .grouphead h3{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(24px,3.4vw,34px);margin:6px 0 6px;letter-spacing:-.3px;}
+  .grouphead h3{font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:800;font-size:clamp(24px,3.4vw,34px);margin:6px 0 6px;letter-spacing:-.6px;}
   .grouphead p{color:var(--soft);font-size:15px;max-width:74ch;margin:0;}
   .grouphead .gl-rule{height:2px;background:var(--ink);opacity:.9;margin-top:16px;}
   .marks{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);gap:16px;margin-bottom:22px;}
@@ -95,7 +96,7 @@
   .id{padding:50px 0;border-bottom:1px solid var(--line);}
   .id-head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:22px;}
   .id-idx{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:12px;letter-spacing:2px;text-transform:uppercase;}
-  .id h2{font-family:"Instrument Serif",serif;font-size:clamp(28px,4.2vw,44px);font-weight:400;margin-top:4px;}
+  .id h2{font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:800;font-size:clamp(26px,4vw,42px);letter-spacing:-1.4px;margin-top:6px;}
   .id .tag{color:var(--soft);font-size:15.5px;max-width:56ch;margin:8px 0 0;}
   .id-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
   .sw{display:flex;gap:6px;}
@@ -146,12 +147,12 @@
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   @media(max-width:820px){.steps{grid-template-columns:1fr 1fr;}}
   .step{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--panel);}
-  .step .num{font-family:"Instrument Serif",serif;font-size:28px;color:var(--accent);}
+  .step .num{font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:800;font-size:26px;color:var(--accent);}
   .step h3{font-size:14.5px;margin:6px 0 7px;}
   .step p{color:var(--soft);font-size:13px;margin:0;}
   .sec-head{max-width:70ch;margin-bottom:22px;}
   .sec-head .n{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;}
-  .sec-head h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(26px,3.4vw,38px);margin:10px 0 12px;}
+  .sec-head h2{font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:800;letter-spacing:-.8px;font-size:clamp(26px,3.4vw,38px);margin:10px 0 12px;}
   .sec-head p{color:var(--soft);font-size:16px;margin:0;}
   footer{padding:34px 0 78px;color:var(--soft);font-size:14px;}
   footer b{color:var(--ink);}
@@ -200,10 +201,10 @@
   .ovcard .prev{height:220px;padding:26px 28px;display:flex;flex-direction:column;justify-content:center;gap:14px;position:relative;overflow:hidden;}
   .ovcard .meta{padding:18px 22px 20px;border-top:1px solid var(--line);}
   .ovcard .meta .idx{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);}
-  .ovcard .meta .nm{font-family:"Instrument Serif",serif;font-size:28px;margin-top:3px;}
+  .ovcard .meta .nm{font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:700;font-size:23px;letter-spacing:-.5px;margin-top:4px;}
   .ovcard .meta .tl{color:var(--soft);font-size:13.5px;margin-top:3px;line-height:1.4;}
   .ovcard .meta .row{display:flex;align-items:center;justify-content:space-between;margin-top:16px;}
-  .ovcard .go{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.4px;color:var(--accent);font-weight:700;}
+  .ovcard .go{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.4px;color:var(--ink);font-weight:700;}
   .ovcard:hover .go{text-decoration:underline;}
   .back{background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:9px 15px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.4px;cursor:pointer;margin:26px 0 6px;}
   .back:hover{border-color:var(--soft);}
@@ -243,12 +244,12 @@
   /* sticky quick-nav */
   .stickyhead{position:sticky;top:0;z-index:60;}
   .stickyhead .topbar{position:static;}
-  .quicknav{background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-  .qn-wrap{display:flex;align-items:center;gap:8px;padding:8px 24px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .qn-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--soft);margin-right:2px;white-space:nowrap;}
-  .qn-btn{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.2px;color:var(--soft);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer;white-space:nowrap;transition:.15s;}
-  .qn-btn:hover{color:var(--ink);border-color:var(--soft);}
-  .qn-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .quicknav{background:color-mix(in srgb,var(--toolbar) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .qn-wrap{display:flex;align-items:center;gap:6px;padding:7px 24px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .qn-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--soft);margin-right:4px;white-space:nowrap;}
+  .qn-btn{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.2px;color:var(--soft);background:transparent;border:1px solid transparent;border-radius:6px;padding:6px 12px;cursor:pointer;white-space:nowrap;transition:.15s;}
+  .qn-btn:hover{color:var(--ink);}
+  .qn-btn.active{background:var(--panel);border-color:var(--line);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.07);}
 
   /* card "view full preview" pill */
   .ovcard .prev{position:relative;}
@@ -277,7 +278,7 @@
   /* usage-rules layer */
   .usage{margin:36px 0 6px;}
   .usage-block{margin-bottom:26px;}
-  .usage-h{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(20px,2.6vw,26px);margin:0 0 3px;}
+  .usage-h{font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:700;letter-spacing:-.4px;font-size:clamp(20px,2.6vw,26px);margin:0 0 3px;}
   .usage-sub{color:var(--soft);font-size:13.5px;margin:0 0 14px;max-width:72ch;}
   .u-lab{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
   .u-marks{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;}
@@ -357,7 +358,7 @@
 
 <div class="view active" id="v-overview">
   <section class="mast"><div class="wrap">
-    <div class="kicker">Carolina's American Judo &middot; pick a direction</div>
+    <div class="kicker">Carolina's American Judo &middot; 3 directions &middot; 9 voices &middot; ready to review</div>
     <h1>Three directions. Click one to see how it plays out.</h1>
     <p>Each is a complete look &mdash; colours, type, a logo mark, and a set of layout voices. Tap a card to drill into that direction's voices, then use the &#9734; on any voice to mark the ones you'd be proud to wear on a gi patch.</p>
   </div></section>
@@ -384,7 +385,7 @@
     </button>
     
     <button class="ovcard" onclick="go('hk')">
-      <div class="prev" style="background:#FBFBFA;color:#17181C;"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('hk');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('hk');}">⤢ View full preview</span><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:21px;letter-spacing:-1px;">CAJA</span></span><div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:30px;line-height:1.0;letter-spacing:-1px;">Move well.<br>Train for life.</div></div>
+      <div class="prev" style="background:#FBFBFA;color:#17181C;"><span class="prevbtn" role="button" tabindex="0" onclick="event.stopPropagation();openHero('hk');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();openHero('hk');}">⤢ View full preview</span><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:21px;letter-spacing:-1px;">CAJA</span></span><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:30px;line-height:1.0;letter-spacing:-1px;">Move well.<br>Train for life.</div></div>
       <div class="meta">
         <div class="idx">Direction 03</div>
         <div class="nm">High-Key Sport</div>
@@ -714,55 +715,62 @@
       <div class="id-right"><div class="sw"><i style="background:#FBFBFA"></i><i style="background:#17181C"></i><i style="background:#2F6BFF"></i><i style="background:#E7E9EE"></i></div>
         <button class="fav" onclick="fav(this)">☆ Favorite</button></div>
     </div>
-      <div class="rationale"><span class="rk">Palette &amp; type</span><span class="rt">The colours tell the gi story: near-white for the white gi, electric blue for the competition blue gi, and deep ink for the black obi of a shodan. It's bright, airy, and modern: the language of contemporary activewear and training apps. Rounded geometric type (Poppins) leads, with Space Grotesk and Archivo for a performance and metrics feel, on open near-white space. The result is approachable, aspirational, and in-motion: easy for a newcomer to walk into.</span></div>
+      <div class="rationale"><span class="rk">Palette &amp; type</span><span class="rt">The colours tell the gi story: near-white for the white gi, electric blue for the competition blue gi, and deep ink for the black obi of a shodan. It's bright, airy, and modern: the language of contemporary activewear and modern sport. A contemporary grotesque (Bricolage Grotesque) leads, with Space Grotesk and Archivo for a crisp, structured feel, on open near-white space. The result is approachable, aspirational, and in-motion: easy for a newcomer to walk into.</span></div>
     <div class="kit">
-      <div class="cell"><h4>Logo lockup</h4><div class="lockup"><span style="display:inline-flex;align-items:center;gap:8px;background:#FBFBFA;padding:2px 6px;"><span style="width:32px;height:32px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;">C</span><span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:22px;letter-spacing:-1px;color:#17181C;">CAJA</span></span></div></div>
-      <div class="cell"><h4>Type</h4><div class="spec"><div class="big" style="font-family:'Poppins',sans-serif;font-weight:800;color:#17181C;background:#FBFBFA;display:inline-block;padding:0 6px;">Aa Bb 123</div><div class="body" style="font-family:'Inter',sans-serif;">Inter — body copy for schedules &amp; info.</div><div class="lab">Poppins display · mono labels</div></div></div>
-      <div class="cell"><h4>Buttons</h4><div class="btns"><span style="background:#17181C;color:#fff;padding:9px 16px;border-radius:999px;font-family:'Poppins',sans-serif;font-weight:600;font-size:12px;">Try a free class</span><span style="color:#2F6BFF;border:1.5px solid #cdd8f5;background:#FBFBFA;padding:8px 14px;border-radius:999px;font-family:'Poppins',sans-serif;font-weight:600;font-size:12px;">Schedule</span></div></div>
-      <div class="cell"><h4>Mobile</h4><div class="phone"><div class="notch"></div><div class="scr" style="background:#FBFBFA;color:#17181C;"><div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:9px;letter-spacing:1px;color:#2F6BFF;text-transform:uppercase;">Matthews</div><div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:24px;line-height:1.02;letter-spacing:-1px;margin:8px 0;">Move well.<br>Train for life.</div><div style="height:96px;margin:8px 0;border-radius:14px;background:linear-gradient(135deg,#e7edff,#dfe6f7);display:flex;align-items:center;justify-content:center;color:#8ea0c8;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;">PHOTO</div><span style="background:#17181C;color:#fff;padding:7px 14px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:10px;display:inline-block;">Try a free class</span></div></div></div>
+      <div class="cell"><h4>Logo lockup</h4><div class="lockup"><span style="display:inline-flex;align-items:center;gap:8px;background:#FBFBFA;padding:2px 6px;"><span style="width:32px;height:32px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;">C</span><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;letter-spacing:-1px;color:#17181C;">CAJA</span></span></div></div>
+      <div class="cell"><h4>Type</h4><div class="spec"><div class="big" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;color:#17181C;background:#FBFBFA;display:inline-block;padding:0 6px;">Aa Bb 123</div><div class="body" style="font-family:'Inter',sans-serif;">Inter — body copy for schedules &amp; info.</div><div class="lab">Bricolage display · mono labels</div></div></div>
+      <div class="cell"><h4>Buttons</h4><div class="btns"><span style="background:#17181C;color:#fff;padding:9px 16px;border-radius:999px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;">Try a free class</span><span style="color:#2F6BFF;border:1.5px solid #cdd8f5;background:#FBFBFA;padding:8px 14px;border-radius:999px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;">Schedule</span></div></div>
+      <div class="cell"><h4>Mobile</h4><div class="phone"><div class="notch"></div><div class="scr" style="background:#FBFBFA;color:#17181C;"><div style="font-family:'Inter',sans-serif;font-weight:600;font-size:9px;letter-spacing:1px;color:#2F6BFF;text-transform:uppercase;">Matthews</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;line-height:1.02;letter-spacing:-1px;margin:8px 0;">Move well.<br>Train for life.</div><div style="height:96px;margin:8px 0;border-radius:14px;background:linear-gradient(135deg,#e7edff,#dfe6f7);display:flex;align-items:center;justify-content:center;color:#8ea0c8;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;">PHOTO</div><span style="background:#17181C;color:#fff;padding:7px 14px;border-radius:999px;font-family:'Inter',sans-serif;font-size:10px;display:inline-block;">Try a free class</span></div></div></div>
     </div>
     <div class="mk-lab" style="margin:30px 0 10px;">Homepage layout — placeholder · one full page in this direction</div>
     <div class="home" style="background:#FBFBFA;color:#17181C;">
       <div class="chrome"><i style="background:#ec6a5e"></i><i style="background:#f4bf4f"></i><i style="background:#61c554"></i><span class="url">caja-judo.org</span></div>
       <nav>
-        <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:20px;letter-spacing:-1px;">CAJA</span></span>
-        <span class="nlinks" style="font-family:'Poppins',sans-serif;font-weight:500;font-size:12.5px;color:#17181C;">
+        <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;letter-spacing:-1px;">CAJA</span></span>
+        <span class="nlinks" style="font-family:'Inter',sans-serif;font-weight:500;font-size:12.5px;color:#17181C;">
           <span>Programs</span><span>Schedule</span><span>About</span>
           <span style="background:#17181C;color:#fff;padding:8px 15px;border-radius:999px;font-weight:600;">Try a free class</span>
         </span>
       </nav>
       <div class="hero">
         <div>
-          <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;color:#2F6BFF;text-transform:uppercase;">Carolina's American Judo · Matthews</div>
-          <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(29px,7vw,46px);line-height:1.02;letter-spacing:-1.5px;margin:12px 0 12px;">Move well. Train for life.</div>
+          <div style="font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;color:#2F6BFF;text-transform:uppercase;">Carolina's American Judo · Matthews</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(29px,7vw,46px);line-height:1.02;letter-spacing:-1.5px;margin:12px 0 12px;">Move well. Train for life.</div>
           <div style="font-family:'Inter',sans-serif;font-size:13.5px;color:#5b6270;max-width:42ch;margin-bottom:20px;">Bright, modern judo in Matthews, NC — for beginners and competitors who want to move well and train for life.</div>
-          <span style="background:#17181C;color:#fff;padding:12px 22px;border-radius:999px;font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;">Try a free class</span>
-          <span style="color:#2F6BFF;border:1.5px solid #cdd8f5;padding:10px 18px;border-radius:999px;font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;margin-left:7px;display:inline-block;">Schedule</span>
+          <span style="background:#17181C;color:#fff;padding:12px 22px;border-radius:999px;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;">Try a free class</span>
+          <span style="color:#2F6BFF;border:1.5px solid #cdd8f5;padding:10px 18px;border-radius:999px;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;margin-left:7px;display:inline-block;">Schedule</span>
         </div>
         <div class="hphoto" style="background:linear-gradient(135deg,#eaf0ff,#dde6f6);color:#7f92bb;"><span class="hlab">Photo — bright, in motion</span></div>
       </div>
       <div class="cards">
-        <div class="card" style="background:#f1f4fb;"><div class="cph" style="background:linear-gradient(135deg,#e2e9fb,#d3ddf3);color:#8ea0c8;">Photo</div><div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.3px;">Youth Judo</div><div style="font-family:'Inter',sans-serif;font-size:11.5px;color:#6b7488;">Ages 5–12 · fundamentals &amp; falling safely.</div></div>
-        <div class="card" style="background:#f1f4fb;"><div class="cph" style="background:linear-gradient(135deg,#e2e9fb,#d3ddf3);color:#8ea0c8;">Photo</div><div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.3px;">Adult Judo</div><div style="font-family:'Inter',sans-serif;font-size:11.5px;color:#6b7488;">All levels · fitness, technique &amp; sparring.</div></div>
-        <div class="card" style="background:#f1f4fb;"><div class="cph" style="background:linear-gradient(135deg,#e2e9fb,#d3ddf3);color:#8ea0c8;">Photo</div><div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.3px;">Competition Team</div><div style="font-family:'Inter',sans-serif;font-size:11.5px;color:#6b7488;">Tournament training for aspiring competitors.</div></div>
+        <div class="card" style="background:#f1f4fb;"><div class="cph" style="background:linear-gradient(135deg,#e2e9fb,#d3ddf3);color:#8ea0c8;">Photo</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.3px;">Youth Judo</div><div style="font-family:'Inter',sans-serif;font-size:11.5px;color:#6b7488;">Ages 5–12 · fundamentals &amp; falling safely.</div></div>
+        <div class="card" style="background:#f1f4fb;"><div class="cph" style="background:linear-gradient(135deg,#e2e9fb,#d3ddf3);color:#8ea0c8;">Photo</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.3px;">Adult Judo</div><div style="font-family:'Inter',sans-serif;font-size:11.5px;color:#6b7488;">All levels · fitness, technique &amp; sparring.</div></div>
+        <div class="card" style="background:#f1f4fb;"><div class="cph" style="background:linear-gradient(135deg,#e2e9fb,#d3ddf3);color:#8ea0c8;">Photo</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.3px;">Competition Team</div><div style="font-family:'Inter',sans-serif;font-size:11.5px;color:#6b7488;">Tournament training for aspiring competitors.</div></div>
       </div>
       <div class="foot" style="color:#8ea0c8;border-top:1px solid #eceef4;"><span>© CAJA — Carolina's American Judo</span><span>Matthews · NC</span></div>
     </div>
     <!-- Studio -->
-    <div class="voice"><div class="vtag"><b>Studio</b><span>Poppins · premium activewear</span></div>
+    <div class="voice"><div class="vtag"><b>Studio</b><span>Bricolage · premium activewear</span></div>
       <div class="vgrid"><div class="vtext" style="background:#FBFBFA;color:#17181C;">
         <div style="position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#2F6BFF,transparent 70%);opacity:.13;"></div>
-        <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;color:#2F6BFF;text-transform:uppercase;">Carolina's American Judo · Matthews</div>
-        <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(29px,7vw,46px);line-height:1.02;letter-spacing:-1.5px;margin:14px 0 14px;">Move well. Train for life.</div>
-        <div><span style="background:#17181C;color:#fff;padding:12px 22px;border-radius:999px;font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;">Try a free class</span></div>
+        <div style="font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;color:#2F6BFF;text-transform:uppercase;">Carolina's American Judo · Matthews</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(29px,7vw,46px);line-height:1.02;letter-spacing:-1.5px;margin:14px 0 14px;">Move well. Train for life.</div>
+        <div><span style="background:#17181C;color:#fff;padding:12px 22px;border-radius:999px;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;">Try a free class</span></div>
       </div><div class="vimg" style="background:linear-gradient(135deg,#eaf0ff,#dde6f6);color:#7f92bb;"><span class="lab">Photo — bright, in motion</span></div></div>
     </div>
     <!-- Performance -->
-    <div class="voice"><div class="vtag"><b>Performance</b><span>Space Grotesk · training-app</span></div>
+    <div class="voice"><div class="vtag"><b>Performance</b><span>Space Grotesk · class schedule</span></div>
       <div class="vgrid"><div class="vtext" style="background:#FBFBFA;color:#17181C;">
         <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#999;border-bottom:1px solid #e5e7eb;padding-bottom:7px;max-width:420px;"><span>CAJA / Matthews</span><span style="color:#2F6BFF;">白→黒</span></div>
-        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,6.2vw,40px);line-height:.98;letter-spacing:-1px;margin:14px 0 12px;">Train for life. <span style="color:#2F6BFF;">Measured in reps.</span></div>
-        <div style="display:flex;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;max-width:320px;"><div style="flex:1;padding:9px 12px;border-right:1px solid #e5e7eb;"><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;">6</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;text-transform:uppercase;color:#999;">days</div></div><div style="flex:1;padding:9px 12px;border-right:1px solid #e5e7eb;"><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:#2F6BFF;">47</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;text-transform:uppercase;color:#999;">throws</div></div><div style="flex:1;padding:9px 12px;"><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;">150+</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;text-transform:uppercase;color:#999;">members</div></div></div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,6.2vw,40px);line-height:.98;letter-spacing:-1px;margin:14px 0 14px;">Train for life. <span style="color:#2F6BFF;">Every week.</span></div>
+        <div style="max-width:440px;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:#9aa1b0;padding:11px 15px;border-bottom:1px solid #e5e7eb;"><span>Weekly schedule</span><span style="color:#2F6BFF;">Matthews dojo</span></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 15px;border-bottom:1px solid #f0f1f4;"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;width:34px;flex:none;">MON</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a92a3;width:48px;flex:none;">6:00p</span><span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;flex:1;">Adult &middot; Technique</span></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 15px;border-bottom:1px solid #f0f1f4;"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;width:34px;flex:none;">TUE</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a92a3;width:48px;flex:none;">5:00p</span><span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;flex:1;">Youth &middot; Beginner</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.5px;text-transform:uppercase;color:#2F6BFF;flex:none;">new welcome</span></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 15px;border-bottom:1px solid #f0f1f4;"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;width:34px;flex:none;">WED</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a92a3;width:48px;flex:none;">6:00p</span><span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;flex:1;">Adult &middot; Randori</span></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 15px;border-bottom:1px solid #f0f1f4;"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;width:34px;flex:none;">FRI</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a92a3;width:48px;flex:none;">6:00p</span><span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;flex:1;">Competition team</span></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 15px;"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;width:34px;flex:none;">SAT</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a92a3;width:48px;flex:none;">9:00a</span><span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;flex:1;">Open mat &middot; all levels</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.5px;text-transform:uppercase;color:#2F6BFF;flex:none;">drop-in</span></div>
+        </div>
       </div><div class="vimg" style="background:linear-gradient(135deg,#eaf0ff,#dde6f6);color:#7f92bb;"><span class="lab">Photo — training</span></div></div>
     </div>
     <!-- Power -->
@@ -805,7 +813,7 @@
         <div class="dodont">
           <div class="dd-col do"><h5>&#10022; Do</h5><ul>
             <li>Keep grounds near-white and airy; electric blue as the single energy colour.</li>
-            <li>Use rounded shapes, generous spacing, and Poppins for display.</li>
+            <li>Use rounded shapes, generous spacing, and Bricolage Grotesque for display.</li>
             <li>Let the dogwood mark be the graphic hero.</li>
           </ul></div>
           <div class="dd-col dont"><h5>&#10005; Don't</h5><ul>
@@ -917,12 +925,12 @@
         <div class="hp-ctas"><span class="hp-cta" style="background:#111;color:#fff;font-family:'Libre Franklin',sans-serif;">Try a free class →</span></div>
       </div></div>`,
     hk: `<div class="hero-preview" style="background:#FBFBFA;color:#17181C;">
-      <div class="hp-nav"><span class="hp-brand"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:20px;letter-spacing:-1px;">CAJA</span></span><span class="hp-links" style="font-family:'Poppins',sans-serif;font-weight:500;font-size:13px;color:#17181C;">Programs · Schedule · About</span></div>
+      <div class="hp-nav"><span class="hp-brand"><span style="width:30px;height:30px;border-radius:9px;background:#2F6BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;">C</span><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;letter-spacing:-1px;">CAJA</span></span><span class="hp-links" style="font-family:'Inter',sans-serif;font-weight:500;font-size:13px;color:#17181C;">Programs · Schedule · About</span></div>
       <div class="hp-body">
-        <div class="hp-eyebrow" style="font-family:'Poppins',sans-serif;color:#2F6BFF;">Carolina's American Judo · Matthews</div>
-        <div class="hp-title" style="font-family:'Poppins',sans-serif;font-weight:800;letter-spacing:-1.5px;">Move well. Train for life.</div>
+        <div class="hp-eyebrow" style="font-family:'Inter',sans-serif;color:#2F6BFF;">Carolina's American Judo · Matthews</div>
+        <div class="hp-title" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-1.5px;">Move well. Train for life.</div>
         <div class="hp-sub">Bright, modern judo in Matthews, NC — for beginners and competitors who want to move well and train for life.</div>
-        <div class="hp-ctas"><span class="hp-cta" style="background:#17181C;color:#fff;border-radius:999px;font-family:'Poppins',sans-serif;">Try a free class</span><span class="hp-cta2" style="color:#2F6BFF;border:1.5px solid #cdd8f5;border-radius:999px;font-family:'Poppins',sans-serif;">Schedule</span></div>
+        <div class="hp-ctas"><span class="hp-cta" style="background:#17181C;color:#fff;border-radius:999px;font-family:'Inter',sans-serif;">Try a free class</span><span class="hp-cta2" style="color:#2F6BFF;border:1.5px solid #cdd8f5;border-radius:999px;font-family:'Inter',sans-serif;">Schedule</span></div>
       </div></div>`
   };
   function openHero(id){
